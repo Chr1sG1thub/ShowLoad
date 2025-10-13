@@ -2,9 +2,11 @@
   <head>
 <script>
   
+const originalString = "API_KEY:3bjz27ydq97vjmrc7f8u12oo";
+const base64Encoded = btoa(originalString);
 fetch('https://intervals.icu/api/v1/athlete/0/wellness/%formatted', {
   headers: {
-    'Authorization': 'Basic API_KEY:3bjz27ydq97vjmrc7f8u12oo'
+    'Authorization': 'Basic ' + base64Encoded
   }
 })
   .then(response => {
