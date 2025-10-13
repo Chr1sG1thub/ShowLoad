@@ -1,0 +1,19 @@
+<html>
+  <head>
+<script>
+  fetch('https://API_KEY:3bjz27ydq97vjmrc7f8u12oo@intervals.icu/api/v1/athlete/0/wellness/%formatted')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText);
+    }
+    return response.json();  // or response.text() for plain text
+  })
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
+</script>
+</head>
+</html>
