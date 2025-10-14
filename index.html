@@ -4,9 +4,10 @@
   
 const originalString = "API_KEY:3bjz27ydq97vjmrc7f8u12oo";
 const base64Encoded = btoa(originalString);
-fetch('https://intervals.icu/api/v1/athlete/0/wellness/%formatted', {
+fetch('https://intervals.icu/api/v1/athlete/0/wellness/2025-10-14', {
   headers: {
-    'Authorization': 'Basic ' + base64Encoded
+    "Authorization": `Basic ${base64Encoded}`,
+       "Accept": "application/json"
   }
 })
   .then(response => {
