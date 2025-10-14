@@ -2,7 +2,7 @@
   <head>
 </head>
   <body>
-    <H1>Show Load</H1>
+    <H1>Required Load</H1>
     <div id="loads">Loading...</div>
 <script>
   
@@ -10,8 +10,8 @@ const originalString = "API_KEY:3bjz27ydq97vjwmrc7f8u12oo";
 const base64Encoded = btoa(originalString);
 const today = new Date();
 const todayStr = today.toISOString().substring(0,10);
-let ctl = 0;
-let atl = 0;
+let ctltod = 0;
+let atltod = 0;
   
 fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
   headers: {
@@ -27,12 +27,21 @@ fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
   })
   .then(data => {
     console.log(data);
-    ctl = data.ctl;
-    atl = data.atl;
+    ctltod = data.ctl;
+    atltod = data.atl;
+    const ctltom = ctltod * 0.976472;
+    const atltom = atltod * 0.866878;
+    const tsstod = (ctltod-atltod-0)/0.133122-0.023528);
+    const tsstom = (ctltom-atltom-0)/0.133122-0.023528);
+    const tsstod2 = (ctltod-atltod-(-10))/0.133122-0.023528);
+    const tsstom2 = (ctltom-atltom-(-10))/0.133122-0.023528);
+    
       const xLoads = document.getElementById("loads");
       console.log(xLoads);
 //      xLoads.innerHTML =  'Hello World';
-      xLoads.innerHTML =  `<H2>CTL = ${ctl}, ATL = ${atl}</H2>`;
+      xLoads.innerHTML =  `Today's fitness is ${ctltod} and fatigue is ${atltod}.<BR/><BR/>` +
+`For a target form of 0 (Grey Zone) the required load is ${tsstod}. If you do nothing more today, tomorrow's required load will be ${tsstom}.<BR/><BR/>` +
+`For a target form of -10 (Optimal) the required load is ${tsstod2}. If you do nothing more today, tomorrow's required load will be ${tsstom2}.`;
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
