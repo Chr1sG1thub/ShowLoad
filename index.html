@@ -24,7 +24,7 @@ fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
   .then(data => {
     console.log(data);
     ctl = data.ctl;
-    atl = data.atl'
+    atl = data.atl;
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
