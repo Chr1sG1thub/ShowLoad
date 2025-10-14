@@ -2,7 +2,7 @@
   <head>
     <title>Show Load</title>
 </head>
-  <body style = "font-family: Arial; font-size: 24px;">
+  <body style = "font-family: Arial; font-size: 30px;">
     <h2>Required Load</h2>
     <div id="loads">Loading...</div>
 <script>
@@ -52,7 +52,7 @@ fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
       const xLoads = document.getElementById("loads");
       console.log(xLoads);
 //      xLoads.innerHTML =  'Hello World';
-      xLoads.innerHTML =  `Today's fitness is ${ctltod} and fatigue is ${atltod}.<BR/><BR/>For a target form of 0 (Grey Zone) the required load is ${tsstod}. If you do nothing more today, tomorrow's required load will be ${tsstom}.<BR/><BR/>For a target form of -10 (Optimal) the required load is ${tsstod2}. If you do nothing more today, tomorrow's required load will be ${tsstom2}.`;
+      xLoads.innerHTML =  `Today's fitness is <STRONG>${ctltod}</STRONG> and fatigue is <STRONG>${atltod}</STRONG>.<BR/><BR/>For a target form of <STRONG>0</STRONG> (Grey Zone) the required load is <STRONG>${tsstod}</STRONG>. If you do nothing more today, tomorrow's required load will be <STRONG>${tsstom}</STRONG>.<BR/><BR/>For a target form of <STRONG>-10</STRONG> (Optimal) the required load is <STRONG>${tsstod2}</STRONG>. If you do nothing more today, tomorrow's required load will be <STRONG>${tsstom2}</STRONG>.`;
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
