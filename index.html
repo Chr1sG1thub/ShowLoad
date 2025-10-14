@@ -25,6 +25,10 @@ fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
     console.log(data);
     ctl = data.ctl;
     atl = data.atl;
+      const xLoads = document.getElementById("loads");
+      console.log(xLoads);
+//      xLoads.innerHTML =  'Hello World';
+      xLoads.InnerHTML =  `<H2>CTL = ${ctl}</H2><H2>ATL = ${atl}</H2>`
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
@@ -34,11 +38,5 @@ fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
   <body>
     <H1>Show Load</H1>
     <div id="loads">Loading...</div>
-    <script>
-      const xLoads = document.getElementById("loads");
-      console.log(xLoads);
-//      xLoads.innerHTML =  'Hello World';
-      xLoads.InnerHTML =  `<H2>CTL = ${ctl}</H2><H2>ATL = ${atl}</H2>`
-    </script>
   </body>
 </html>
