@@ -32,7 +32,7 @@ fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
       const xLoads = document.getElementById("loads");
       console.log(xLoads);
 //      xLoads.innerHTML =  'Hello World';
-      xLoads.InnerHTML =  `<H2>CTL = ${ctl}</H2><H2>ATL = ${atl}</H2>`
+      xLoads.textContent =  'CTL = ' + ctl + ', ATL = ' + atl;
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
