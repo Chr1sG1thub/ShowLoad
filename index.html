@@ -30,12 +30,24 @@ fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
     console.log(data);
     ctltod = data.ctl;
     atltod = data.atl;
-    const ctltom = ctltod * 0.976472;
-    const atltom = atltod * 0.866878;
-    const tsstod = (ctltod-atltod-0)/(0.133122-0.023528);
-    const tsstom = (ctltom-atltom-0)/(0.133122-0.023528);
-    const tsstod2 = (ctltod-atltod-(-10))/(0.133122-0.023528);
-    const tsstom2 = (ctltom-atltom-(-10))/(0.133122-0.023528);
+    let ctltom = ctltod * 0.976472;
+    let atltom = atltod * 0.866878;
+    
+    let tsstod = (ctltod-atltod-0)/(0.133122-0.023528);
+    let tsstom = (ctltom-atltom-0)/(0.133122-0.023528);
+    let tsstod2 = (ctltod-atltod-(-10))/(0.133122-0.023528);
+    let tsstom2 = (ctltom-atltom-(-10))/(0.133122-0.023528);
+
+    ctltod = Math.round(ctltod * 10) / 10;
+    atltod = Math.round(atltod * 10) / 10;
+    ctltom = Math.round(ctltom * 10) / 10;
+    atltom = Math.round(atltom * 10) / 10;
+
+    tsstod = Math.round(tsstod);
+    tsstom = Math.round(tsstom);
+    tsstod2 = Math.round(tsstod2);
+    tsstom2 = Math.round(tsstom2);
+    
     
       const xLoads = document.getElementById("loads");
       console.log(xLoads);
