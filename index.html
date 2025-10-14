@@ -6,8 +6,8 @@ const originalString = "API_KEY:3bjz27ydq97vjwmrc7f8u12oo";
 const base64Encoded = btoa(originalString);
 const today = new Date();
 const todayStr = today.toISOString().substring(0,10);
-const ctl = 0;
-const atl = 0;
+let ctl = 0;
+let atl = 0;
   
 fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
   headers: {
