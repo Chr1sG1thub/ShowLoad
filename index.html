@@ -1,4 +1,4 @@
-<html>
+t<html>
   <head>
 <script>
   
@@ -33,9 +33,9 @@ fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
 </head>
   <body>
     <H1>Show Load</H1>
-    <div id=loads></div>
+    <div id="loads"></div>
     <script>
-      let xLoads = getObjectById("loads");
+      let xLoads = document.getElementById("loads");
       xLoads.InnerHTML =  `<H2>CTL = ${ctl}</H2><H2>ATL = ${atl}</H2>`
     </script>
   </body>
