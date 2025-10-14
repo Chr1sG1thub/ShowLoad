@@ -6,7 +6,9 @@ const originalString = "API_KEY:3bjz27ydq97vjwmrc7f8u12oo";
 const base64Encoded = btoa(originalString);
 const today = new Date();
 const todayStr = today.toISOString().substring(0,10);
-
+const ctl;
+const atl;
+  
 fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
   headers: {
     "Authorization": `Basic ${base64Encoded}`,
@@ -21,6 +23,8 @@ fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
   })
   .then(data => {
     console.log(data);
+    ctl = data.ctl;
+    atl = data.atl'
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
@@ -29,6 +33,7 @@ fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
 </head>
   <body>
     <H1>Show Load</H1>
-
+    <H2>`CTL = ${ctl}`</H2>
+    <H2>`ATL = ${atl}`</H2>
   </body>
 </html>
