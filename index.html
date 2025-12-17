@@ -16,45 +16,49 @@
       let ctltod = 0;
       let atltod = 0;
   
-      try {
-    const response = await fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
-        headers: {
-          "Authorization": `Basic ${base64Encoded}`,
-           "Accept": "application/json"
-        }
-      });
-     const data = await response.json();
-
-      (data => {
-         // console.log(data);
-          ctltod = data.ctl;
-          atltod = data.atl;
-          let ctltom = ctltod * 0.976472;
-          let atltom = atltod * 0.866878;
+try {
+  const response = await fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
+    headers: {
+      "Authorization": `Basic ${base64Encoded}`,
+      "Accept": "application/json"
+    }
+  });
+  const data = await response.json();
+  
+  // Properly invoke the IIFE with data
+  (function(data) {
+    ctltod = data.ctl;
+    atltod = data.atl;
+    let ctltom = ctltod * 0.976472;  // CTL tomorrow decay [web:18]
+    let atltom = atltod * 0.866878;  // ATL tomorrow decay [web:18]
     
-          let tsstod = (ctltod-atltod-0)/(0.133122-0.023528);
-          let tsstom = (ctltom-atltom-0)/(0.133122-0.023528);
-          let tsstod2 = (ctltod-atltod-(-10))/(0.133122-0.023528);
-          let tsstom2 = (ctltom-atltom-(-10))/(0.133122-0.023528);
+    let tsstod = (ctltod-atltod-0)/(0.133122-0.023528);
+    let tsstom = (ctltom-atltom-0)/(0.133122-0.023528);
+    let tsstod2 = (ctltod-atltod-(-10))/(0.133122-0.023528);
+    let tsstom2 = (ctltom-atltom-(-10))/(0.133122-0.023528);
 
-          ctltod = Math.round(ctltod * 10) / 10;
-          atltod = Math.round(atltod * 10) / 10;
-          ctltom = Math.round(ctltom * 10) / 10;
-          atltom = Math.round(atltom * 10) / 10;
-
-          tsstod = Math.round(tsstod);
-          tsstom = Math.round(tsstom);
-          tsstod2 = Math.round(tsstod2);
-          tsstom2 = Math.round(tsstom2);
+    // Round to 1 decimal
+    ctltod = Math.round(ctltod * 10) / 10;
+    atltod = Math.round(atltod * 10) / 10;
+    ctltom = Math.round(ctltom * 10) / 10;
+    atltom = Math.round(atltom * 10) / 10;
+    tsstod = Math.round(tsstod);
+    tsstom = Math.round(tsstom);
+    tsstod2 = Math.round(tsstod2);
+    tsstom2 = Math.round(tsstom2);
     
-          const xLoads = document.getElementById("loads");
-          console.log(xLoads);
-//      xLoads.innerHTML =  'Hello World';
-          xLoads.innerHTML =  `Today's fitness is <STRONG>${ctltod}</STRONG> and fatigue is <STRONG>${atltod}</STRONG>.<BR/><BR/>For a target form of <STRONG>0</STRONG> (Grey Zone) the required load is <STRONG>${tsstod}</STRONG>. If you do nothing more today, tomorrow's required load will be <STRONG>${tsstom}</STRONG>.<BR/><BR/>For a target form of <STRONG>-10</STRONG> (Optimal) the required load is <STRONG>${tsstod2}</STRONG>. If you do nothing more today, tomorrow's required load will be <STRONG>${tsstom2}</STRONG>.`;
-        })
-        .catch(error => {
-          console.error('There was a problem with the fetch operation:', error);
-        });
+    document.getElementById("loads").innerHTML = 
+      `Today's fitness is <STRONG>${ctltod}</STRONG> and fatigue is <STRONG>${atltod}</STRONG>.<BR/><BR/>` +
+      `For a target form of <STRONG>0</STRONG> (Grey Zone) the required load is <STRONG>${tsstod}</STRONG>. ` +
+      `If you do nothing more today, tomorrow's required load will be <STRONG>${tsstom}</STRONG>.<BR/><BR/>` +
+      `For a target form of <STRONG>-10</STRONG> (Optimal) the required load is <STRONG>${tsstod2}</STRONG>. ` +
+      `If you do nothing more today, tomorrow's required load will be <STRONG>${tsstom2}</STRONG>.`;
+  })(data);  // ← This invokes the function with data
+  
+} catch(error) {
+  console.error('Fetch error:', error);
+  document.getElementById("loads").innerHTML = 'Error loading wellness data';
+}
         
       } // async function getData()
       getData();
