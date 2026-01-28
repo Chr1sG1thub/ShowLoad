@@ -32,10 +32,10 @@ try {
     let ctltom = ctltod * 0.976472;  // CTL tomorrow decay [web:18]
     let atltom = atltod * 0.866878;  // ATL tomorrow decay [web:18]
     
-    let tsstod = (ctltod-atltod-0)/(0.133122-0.023528);
-    let tsstom = (ctltom-atltom-0)/(0.133122-0.023528);
-    let tsstod2 = (ctltod-atltod-(-10))/(0.133122-0.023528);
-    let tsstom2 = (ctltom-atltom-(-10))/(0.133122-0.023528);
+    let tsstod = Math.max((ctltod-atltod-0)/(0.133122-0.023528), 0);
+    let tsstom = Math.max((ctltom-atltom-0)/(0.133122-0.023528), 0);
+    let tsstod2 = Math.max((ctltod-atltod-(-10))/(0.133122-0.023528), 0);
+    let tsstom2 = Math.max((ctltom-atltom-(-10))/(0.133122-0.023528), 0);
 
     // Round to 1 decimal
     ctltod = Math.round(ctltod * 10) / 10;
