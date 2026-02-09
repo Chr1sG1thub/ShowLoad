@@ -21,6 +21,8 @@ export default async function handler(req, res) {
       url.searchParams.append(key, value);
     });
 
+    console.log(url);
+
  //   console.log('Fetching:', url.toString());
 
     const response = await fetch(url, {
