@@ -15,11 +15,11 @@ export default async function handler(req, res) {
 
     // Build correct Intervals path: /api/intervals?foo → /api/v1/athlete/0/activities?foo
 //    const url = new URL('https://intervals.icu/api/v1/athlete/0/wellness/');
-    const url = 'https://intervals.icu/api/v1/athlete/0/wellness/';
+    let url = 'https://intervals.icu/api/v1/athlete/0/wellness/';
     
     // Copy query params
     new URLSearchParams(req.url.split('?')[1] || '').forEach((value, key) => {
-      url.append(value);
+      url += value;
     });
 
     console.log(url);
