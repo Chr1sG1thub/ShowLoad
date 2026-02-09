@@ -14,11 +14,12 @@ export default async function handler(req, res) {
     const auth = Buffer.from(`API_KEY:${apiKey}`).toString('base64');
 
     // Build correct Intervals path: /api/intervals?foo → /api/v1/athlete/0/activities?foo
-    const url = new URL('https://intervals.icu/api/v1/athlete/0/wellness/');
+//    const url = new URL('https://intervals.icu/api/v1/athlete/0/wellness/');
+    const url = 'https://intervals.icu/api/v1/athlete/0/wellness/';
     
     // Copy query params
     new URLSearchParams(req.url.split('?')[1] || '').forEach((value, key) => {
-      url.searchParams.append(key, value);
+      url.append(value);
     });
 
     console.log(url);
