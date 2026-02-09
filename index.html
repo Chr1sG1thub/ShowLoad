@@ -17,9 +17,8 @@
       let atltod = 0;
   
 try {
-  const response = await fetch('https://intervals.icu/api/v1/athlete/0/wellness/'+todayStr, {
+  const response = await fetch('https://show-load.vercel.app/api/showload?date='+todayStr, {
     headers: {
-      "Authorization": `Basic ${base64Encoded}`,
       "Accept": "application/json"
     }
   });
